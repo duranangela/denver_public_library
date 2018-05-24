@@ -22,5 +22,24 @@ class Library
       book.author_last_name
     end
   end
+
+  def find_by_author(name)
+    author_name = name.split(' ')
+    array_books = @books.select do |book|
+      (book.author_last_name == author_name[1]) && (book.author_first_name == author_name[0])
+    end
+    hash_books = array_books.map do |book|
+      {book.title => book}
+    end
+  end
+
+  def find_by_publication_date(date)
+    array_books = @books.select do |book|
+      book.publication_date == date
+    end
+    hash_books = array_books.map do |book|
+      {book.title => book}
+    end
+  end
   
 end
